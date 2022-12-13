@@ -18,10 +18,11 @@ const bootApp=()=>{
         console.log(err);
     })
 }
-app.use('/public', require('./route/public.route'));
+// app.use('/public', require('./route/public.route'));
 const {mongoConnect} = require('./_helper/dbConnect');
 mongoConnect()
     .then(()=>{
+             app.use('/public', require('./route/public.route'));
             bootApp()
     })
     .catch(err=>console.log(err))

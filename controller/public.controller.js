@@ -2,15 +2,9 @@ const {publicValidate} = require('../validate/public.validate')
 const crypto = require('crypto');
 
 const {mongoConnect, getDb, getMyDB} = require('../_helper/dbConnect');
+const db =getMyDB()
 
-let db;
-const MyDB =async ()=>{
-    try{
-        db=await getDb()
-    }catch(err){
-        console.log(err);
-    }
-}
+
 
 
 const register = async(req, res)=>{
@@ -24,10 +18,6 @@ const addPassCode = async(req, res)=>{
     const users  = await db.collection('users').find().toArray()
     res.status(200).json({message:"everything is fine", users:users})
 }
-
-setTimeout(function(){
-    MyDB()
-}, 1000); 
 
 
 
